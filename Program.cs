@@ -43,10 +43,10 @@ internal class Program
         var insertCommand = connection.CreateCommand();
         insertCommand.CommandText = "INSERT INTO FruitsAndVegetables (name, type, color, calory) VALUES ($name, $type, $color, $calory)";
 
-        MyExtensions.AddParameterWithValue(insertCommand, "$name", name);
-        MyExtensions.AddParameterWithValue(insertCommand, "$type", type);
-        MyExtensions.AddParameterWithValue(insertCommand, "$color", color);
-        MyExtensions.AddParameterWithValue(insertCommand, "$calory", calory);
+        insertCommand.AddParameterWithValue("$name", name);
+        insertCommand.AddParameterWithValue("$type", type);
+        insertCommand.AddParameterWithValue("$color", color);
+        insertCommand.AddParameterWithValue("$calory", calory);
 
         insertCommand.ExecuteNonQuery();
         await connection.CloseAsync();
